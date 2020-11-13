@@ -1,7 +1,7 @@
 <<<<<<< HEAD
 [//]: # (Image References)
 
-[image2]: https://github.com/TmoreiraBR/UnityMLAgents1stProject/TrainedResults.jpg  "Test Agent"
+[image2]: https://github.com/TmoreiraBR/UnityMLAgents1stProject/blob/main/TrainedResults.jpg  "Test Agent"
 
 # Project 1: Navigation
 

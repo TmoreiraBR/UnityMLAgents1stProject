@@ -84,6 +84,10 @@ A plot for the mean return every 100 episodes is shown below. We see that our tr
 ![Test Agent][image2]
 
 
+## Future Ideas
+
+Implement and compare current results with advancements that were proposed in the literature, such as: double DQN, dueling DQN and prioritized experience replay.
+
 ## References
 <a id="1">[1]</a> 
 Mnih, V., Kavukcuoglu, K., Silver, D., Rusu, A.A., Veness, J., Bellemare, M.G., Graves, A., Riedmiller, M., Fidjeland, A.K., Ostrovski, G. and Petersen, S., 2015. Human-level control through deep reinforcement learning. nature, 518(7540), pp.529-533.

@@ -25,7 +25,7 @@ To avoid this, the Algorithim utilizes Experience Replay, where batches of <img 
 
 Also, to avoid unstable learning a second network, called "target" network is utilized during the update step. This target network has its weights frozen during the update, and after some number of steps (hyperparameter) its weights are updated to be the same as the "local" network:
 
-<img src="https://render.githubusercontent.com/render/math?math=\Delta w = \alpha (sum(r',  \gamma max_a \hat{q}(s,a,\theta_{frozen})) - \hat{q}(s,a,\theta)) \nabla w \hat{q}(s,a,\theta)">.
+<img src="https://render.githubusercontent.com/render/math?math=\Delta \theta = \alpha (sum(r',  \gamma max_a \hat{q}(s,a,\theta_{frozen})) - \hat{q}(s,a,\theta)) \nabla_{\theta} \hat{q}(s,a,\theta)">.
 
 ## Algorithim
 
@@ -42,7 +42,8 @@ Detailed Algorithim pseudocode, edited from [[1]](#1)
   * Set <img src="https://render.githubusercontent.com/render/math?math=\s' \leftarrow s">
   * Store transition tuple <img src="https://render.githubusercontent.com/render/math?math=<s, a, r', s'>"> in **D**
   * Sample random minibatch of transitions <img src="https://render.githubusercontent.com/render/math?math=<s, a, r', s'>"> from **D**
-  * Set target q-value as <img src="https://render.githubusercontent.com/render/math?math=Q_{target} = r' + \gamma max_a \hat{q}(s,a,\theta_{frozen})">
+  * Set target q-value as <img src="https://render.githubusercontent.com/render/math?math=Q_{target} = sum(r',  \gamma max_a \hat{q}(s,a,\theta_{frozen}))">
+  * Perform local network weights update with <img src="https://render.githubusercontent.com/render/math?math=\Delta \theta = \alpha (Q_{target} - \hat{q}(s,a,\theta)) \nabla_{\theta} \hat{q}(s,a,\theta)">
   
 ## Results
 

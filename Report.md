@@ -68,9 +68,18 @@ TAU = 1e-3  | Value between 0 and 1 -> The closer to 1 the greater, the target w
 LR = 5e-4  | learning rate for updating policy network weights
 UPDATE_EVERY = 4  | how often to update the target network 
 
+Neural Network Layers (local and target networks)  | Number of nodes 
+------------- | -------------
+Input Layer  | 37 Input States
+1st Hidden Layer  | 64 (followed by ReLu Activation function)
+2nd Hidden Layer  | 128 (followed by ReLu Activation function)
+3rd Hidden Layer  | 64 (followed by ReLu Activation function)
+Output Layer  | 4 Discrete Actions (left, right, forward, backwards)
+
+
 ## Results
 
-A plot for the mean return every 100 episodes is shown below. We see that our trained Agent is capable of surparsing the requirements of 13+ rewards.
+A plot for the mean return every 100 episodes is shown below. We see that our trained Agent is capable of surparsing the requirements of 13+ rewards after approximately 400 Episodes. The weights of the neural network are saved in model_weights_checkpoint.pth.
 
 ![Test Agent][image2]
 

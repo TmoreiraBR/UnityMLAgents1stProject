@@ -11,7 +11,7 @@ For solving this project a Deep Q-Learning Algorithim, with two neural networks 
 
 The Algorithim, based on [[1]](#1), utilizes the "local" neural network as a function approximation for the action-value function:
 
-<img src="https://render.githubusercontent.com/render/math?math=q_{\pi}(s,a,\theta)">,
+<img src="https://render.githubusercontent.com/render/math?math=\hat{q}_{\pi}(s,a,\theta)">,
 
 where the function approximation is parametrized by the neural network weights <img src="https://render.githubusercontent.com/render/math?math=\theta">.
 
@@ -25,7 +25,7 @@ To avoid this, the Algorithim utilizes Experience Replay, where batches of <img 
 
 Also, to avoid unstable learning a second network, called "target" network is utilized during the update step. This target network has its weights frozen during the update, and after some number of steps (hyperparameter) its weights are updated to be the same as the "local" network:
 
-<img src="https://render.githubusercontent.com/render/math?math=\Delta w = \alpha (r_{t+1} + \gamma max)">.
+<img src="https://render.githubusercontent.com/render/math?math=\Delta w = \alpha (r_{t+1} + \gamma max_a \hat{q}(s,a,\theta_{frozen}) - \hat{q}(s,a,\theta)) \nabla w \hat{q}(s,a,\theta)">.
 
 ## Algorithim
 

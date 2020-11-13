@@ -21,11 +21,11 @@ Assuming an already trained neural network, the optimal policy can be obtained b
 
 Since the parametrized action-value function is continuous, on-policy learning approch, such as updating a Q-table, could lead to reinforcing correlated state-actions values (i.e. actions that lead to known states), which is bad for generalization.
 
-To avoid this, the Algorithim utilizes Experience Replay, where batches of <img src="https://render.githubusercontent.com/render/math?math=<s_{t}, a_{t}, r_{t+1}, s_{t+1}, a_{t+1}>"> are sampled randomly, breaking the correlation.
+To avoid this, the Algorithim utilizes Experience Replay, where batches of <img src="https://render.githubusercontent.com/render/math?math=<s, a, r', s', a'>"> are sampled randomly, breaking the correlation (in this report ' denotes a forward time-step).
 
 Also, to avoid unstable learning a second network, called "target" network is utilized during the update step. This target network has its weights frozen during the update, and after some number of steps (hyperparameter) its weights are updated to be the same as the "local" network:
 
-<img src="https://render.githubusercontent.com/render/math?math=\Delta w = \alpha (r_{t+1} \quad + \gamma max_a \hat{q}(s,a,\theta_{frozen}) - \hat{q}(s,a,\theta)) \nabla w \hat{q}(s,a,\theta)">.
+<img src="https://render.githubusercontent.com/render/math?math=\Delta w = \alpha (r' + \gamma max_a \hat{q}(s,a,\theta_{frozen}) - \hat{q}(s,a,\theta)) \nabla w \hat{q}(s,a,\theta)">.
 
 ## Algorithim
 
@@ -36,12 +36,13 @@ Detailed Algorithim pseudocode, edited from [[1]](#1)
 * Initialize parametrized action-value function <img src="https://render.githubusercontent.com/render/math?math=\hat{q}(s,a,\theta)"> (local neural network) with random weights <img src="https://render.githubusercontent.com/render/math?math=\theta"> 
 * Initialize parametrized target action-value function <img src="https://render.githubusercontent.com/render/math?math=\hat{q}(s,a,\theta_{frozen})">.  with weights <img src="https://render.githubusercontent.com/render/math?math=\theta_{frozen}"> 
 * **For** episode = 1,M **do**
-  * With probability <img src="https://render.githubusercontent.com/render/math?math=\epsilon">  select a random action <img src="https://render.githubusercontent.com/render/math?math=\a_{t}"> 
-  * otherwise choose action from current policy <img src="https://render.githubusercontent.com/render/math?math=\a_{t} = arg max_a \hat{q_{\pi}}(s_t,a,\theta)">
-  * Execute action <img src="https://render.githubusercontent.com/render/math?math=\a_{t}"> in Unity environment and observe reward <img src="https://render.githubusercontent.com/render/math?math=\r_{t}"> and next state <img src="https://render.githubusercontent.com/render/math?math=\s_{t+1}">
-  * Set <img src="https://render.githubusercontent.com/render/math?math=\s_{t+1} \leftarrow s_{t}">
-  * Store transition tuple <img src="https://render.githubusercontent.com/render/math?math=<s_{t}, a_{t}, r_{t+1}, s_{t+1}, a_{t+1}>"> in **D**
-  * 
+  * With probability <img src="https://render.githubusercontent.com/render/math?math=\epsilon">  select a random action <img src="https://render.githubusercontent.com/render/math?math=\a"> 
+  * otherwise choose action from current policy <img src="https://render.githubusercontent.com/render/math?math=\a = arg max_a \hat{q_{\pi}}(s,a,\theta)">
+  * Execute action <img src="https://render.githubusercontent.com/render/math?math=\a"> in Unity environment and observe reward <img src="https://render.githubusercontent.com/render/math?math=\r"> and next state <img src="https://render.githubusercontent.com/render/math?math=\s'">
+  * Set <img src="https://render.githubusercontent.com/render/math?math=\s' \leftarrow s">
+  * Store transition tuple <img src="https://render.githubusercontent.com/render/math?math=<s, a, r', s', a'>"> in **D**
+  * Sample random minibatch of transitions <img src="https://render.githubusercontent.com/render/math?math=<s, a, r', s', a'>"> from **D**
+  * Set target q-value as <img src="https://render.githubusercontent.com/render/math?math=Q_{target} = r' + \gamma max_a \hat{q}(s,a,\theta_{frozen})">
   
 ## Results
 

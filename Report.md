@@ -29,7 +29,14 @@ Also, to avoid unstable learning a second network, called "target" network is ut
 
 ## Algorithim
 
+Detailed Algorithim pseudocode, edited from [[1]](#1)
 
+**Algorithm 1: deep Q-learning with experience replay**
+* Initialize replay memory **D** to capacity **N**
+* Initialize parametrized action-value function <img src="https://render.githubusercontent.com/render/math?math=\hat{q}(s,a,\theta)"> (local neural network) with random weights <img src="https://render.githubusercontent.com/render/math?math=\theta"> 
+* Initialize parametrized target action-value function <img src="https://render.githubusercontent.com/render/math?math=\hat{q}(s,a,\theta_{frozen})">.  with weights <img src="https://render.githubusercontent.com/render/math?math=\theta_{frozen}"> 
+* **For** episode = 1,M **do**
+ * With probability <img src="https://render.githubusercontent.com/render/math?math=\epsilon">  select a random action <img src="https://render.githubusercontent.com/render/math?math=\a_{t}"> 
 
 ## Results
 

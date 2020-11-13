@@ -27,7 +27,7 @@ Also, to avoid unstable learning a second network, called "target" network is ut
 
 <img src="https://render.githubusercontent.com/render/math?math=\Delta \theta = \alpha (sum(r',  \gamma max_a \hat{q}(s,a,\theta_{frozen})) - \hat{q}(s,a,\theta)) \nabla_{\theta} \hat{q}(s,a,\theta)">,
 
-where <img src="https://render.githubusercontent.com/render/math?math=\Delta \theta = \alpha"> is the learning-rate.
+where <img src="https://render.githubusercontent.com/render/math?math=\alpha"> is the learning-rate and <img src="https://render.githubusercontent.com/render/math?math=\gamma"> the discount factor.
 
 ## Algorithim
 
@@ -56,14 +56,21 @@ After a couple of attempts hyperparameter values that could reach the minimum of
 
 Hyperparameter value  | Description
 ------------- | -------------
-Content Cell  | Content Cell
-Content Cell  | Content Cell
-
-
+n_episodes=900  | maximum number of training episodes
+max_t=1000  | maximum number of timesteps per episode
+eps_start=1.0  | starting value of epsilon, for epsilon-greedy action selection
+eps_end=0.01  | minimum value of epsilon
+eps_decay=0.995  | multiplicative factor (per episode) for decreasing epsilon
+BUFFER_SIZE = int(1e5)   | replay buffer size
+BATCH_SIZE = 64 | minibatch size
+GAMMA = 0.99   | discount factor
+TAU = 1e-3  | Value between 0 and 1 -> The closer to 1 the greater, the target weights update will be (if TAU = 1, then <img src="https://render.githubusercontent.com/render/math?math=\theta_{frozen} = \theta">)
+LR = 5e-4  | learning rate for updating policy network weights
+UPDATE_EVERY = 4  | how often to update the target network 
 
 ## Results
 
-
+A plot for the mean return every 100 episodes is shown below. We see that our trained Agent is capable of surparsing the requirements of 13+ rewards.
 
 ![Test Agent][image2]
 

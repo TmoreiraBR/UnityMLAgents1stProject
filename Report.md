@@ -37,9 +37,12 @@ Detailed Algorithim pseudocode, edited from [[1]](#1)
 * Initialize parametrized target action-value function <img src="https://render.githubusercontent.com/render/math?math=\hat{q}(s,a,\theta_{frozen})">.  with weights <img src="https://render.githubusercontent.com/render/math?math=\theta_{frozen}"> 
 * **For** episode = 1,M **do**
   * With probability <img src="https://render.githubusercontent.com/render/math?math=\epsilon">  select a random action <img src="https://render.githubusercontent.com/render/math?math=\a_{t}"> 
-  * otherwise select <img src="https://render.githubusercontent.com/render/math?math=\a_{t} = arg max_a \hat{q}(s_t,a,\theta)">
+  * otherwise choose action from current policy <img src="https://render.githubusercontent.com/render/math?math=\a_{t} = arg max_a \hat{q_{\pi}}(s_t,a,\theta)">
   * Execute action <img src="https://render.githubusercontent.com/render/math?math=\a_{t}"> in Unity environment and observe reward <img src="https://render.githubusercontent.com/render/math?math=\r_{t}"> and next state <img src="https://render.githubusercontent.com/render/math?math=\s_{t+1}">
-
+  * Set <img src="https://render.githubusercontent.com/render/math?math=\s_{t+1} \leftarrow s_{t}">
+  * Store transition tuple <img src="https://render.githubusercontent.com/render/math?math=<s_{t}, a_{t}, r_{t+1}, s_{t+1}, a_{t+1}>"> in **D**
+  * 
+  
 ## Results
 
 ![Test Agent][image2]

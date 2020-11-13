@@ -37,16 +37,16 @@ Detailed Algorithim pseudocode, edited from [[1]](#1)
 * Initialize parametrized target action-value function <img src="https://render.githubusercontent.com/render/math?math=\hat{q}(s,a,\theta_{frozen})">.  with weights <img src="https://render.githubusercontent.com/render/math?math=\theta_{frozen}"> 
 * **For** episode = 1,M **do**
   * Start environment and sample initial state <img src="https://render.githubusercontent.com/render/math?math=s">
-  **For** t = 1,T **do**
-   * With probability <img src="https://render.githubusercontent.com/render/math?math=\epsilon">  select a random action <img src="https://render.githubusercontent.com/render/math?math=\a"> 
-   * otherwise choose action from current policy <img src="https://render.githubusercontent.com/render/math?math=\a = arg max_a \hat{q_{\pi}}(s,a,\theta)">
-   * Execute action <img src="https://render.githubusercontent.com/render/math?math=\a"> in Unity environment and observe reward <img src="https://render.githubusercontent.com/render/math?math=\r"> and next state <img src="https://render.githubusercontent.com/render/math?math=\s'">
-   * Set <img src="https://render.githubusercontent.com/render/math?math=\s' \leftarrow s">
-   * Store transition tuple <img src="https://render.githubusercontent.com/render/math?math=<s, a, r', s'>"> in **D**
-   * Sample random minibatch of transitions <img src="https://render.githubusercontent.com/render/math?math=<s, a, r', s'>"> from **D**
-   * Set target q-value as <img src="https://render.githubusercontent.com/render/math?math=Q_{target} = sum(r',  \gamma max_a \hat{q}(s,a,\theta_{frozen}))">
-   * Perform local network weights update with <img src="https://render.githubusercontent.com/render/math?math=\Delta \theta = \alpha (Q_{target} - \hat{q}(s,a,\theta)) \nabla_{\theta} \hat{q}(s,a,\theta)">
-  
+  * **For** t = 1,T **do**
+    * With probability <img src="https://render.githubusercontent.com/render/math?math=\epsilon">  select a random action <img src="https://render.githubusercontent.com/render/math?math=\a"> 
+    * otherwise choose action from current policy <img src="https://render.githubusercontent.com/render/math?math=\a = arg max_a \hat{q_{\pi}}(s,a,\theta)">
+    * Execute action <img src="https://render.githubusercontent.com/render/math?math=\a"> in Unity environment and observe reward <img src="https://render.githubusercontent.com/render/math?math=\r"> and next state <img src="https://render.githubusercontent.com/render/math?math=\s'">
+    * Set <img src="https://render.githubusercontent.com/render/math?math=\s' \leftarrow s">
+    * Store transition tuple <img src="https://render.githubusercontent.com/render/math?math=<s, a, r', s'>"> in **D**
+    * Sample random minibatch of transitions <img src="https://render.githubusercontent.com/render/math?math=<s, a, r', s'>"> from **D**
+    * Set target q-value as <img src="https://render.githubusercontent.com/render/math?math=Q_{target} = sum(r',  \gamma max_a \hat{q}(s,a,\theta_{frozen}))">
+    * Perform local network weights update with <img src="https://render.githubusercontent.com/render/math?math=\Delta \theta = \alpha (Q_{target} - \hat{q}(s,a,\theta)) \nabla_{\theta} \hat{q}(s,a,\theta)">
+
 ## Results
 
 ![Test Agent][image2]
